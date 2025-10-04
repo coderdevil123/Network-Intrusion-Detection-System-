@@ -1,37 +1,21 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Navbar from "./components/Navbar"; // 👈 Navbar import karo
+import Sidebar from "@/components/Sidebar";
+import Navbar from "@/components/Navbar";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-export const metadata: Metadata = {
-  title: "NIDS Frontend",
-  description: "Network Intrusion Detection System",
+export const metadata = {
+  title: "NIDS - Intrusion Detection System",
+  description: "Industrial-level real-time network monitoring dashboard",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-100 text-gray-900`}
-      >
-        {/* 👇 Navbar har page par dikhega */}
-        <Navbar />
-
-        <main className="p-6">{children}</main>
+      <body className="bg-[#0f172a] text-white">
+        <Sidebar />
+        <div className="ml-64">
+          <Navbar />
+          <main className="pt-20 px-6">{children}</main>
+        </div>
       </body>
     </html>
   );
